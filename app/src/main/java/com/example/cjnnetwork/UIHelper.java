@@ -2,7 +2,9 @@ package com.example.cjnnetwork;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.util.Patterns;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Lifecycle;
@@ -64,4 +66,12 @@ public class UIHelper {
         return alertDialog;
     }
 
+
+    public static boolean isValidEmail(String email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+        return PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber);
+    }
 }

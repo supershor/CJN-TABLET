@@ -23,8 +23,7 @@ public class JobOfferWebView extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url.endsWith(".pdf")) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                    // if want to download pdf manually create AsyncTask here
-                    // and download file
+
                     return true;
                 }
                 return false;
