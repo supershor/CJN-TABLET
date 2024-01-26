@@ -69,14 +69,14 @@ public class JobOfferNavigationFragment extends Fragment {
 
         InputParameterJobDec d = new InputParameterJobDec();
         d.setJobid(jobid);
-        Log.e("TAG", "Login Input : " + new Gson().toJson(d));
+        Log.e("API_TAG", "Job Description Input : " + new Gson().toJson(d));
         Call<OutputJobDescription> call = authenticationApi.jobDescriptionPdf(d);
         Log.e("request_api_url", "" + call.request().url());
 
         call.enqueue(new Callback<OutputJobDescription>() {
             @Override
             public void onResponse(Call<OutputJobDescription> call, Response<OutputJobDescription> response) {
-                Log.e("TAG", "Login Response: " + new Gson().toJson(response.body()));
+                Log.e("API_TAG", "Job Description Response: " + new Gson().toJson(response.body()));
                 if (response.body() != null) {
                     if (response.body().getResponseStatus() == 200) {
 

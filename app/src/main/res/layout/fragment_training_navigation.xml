@@ -48,6 +48,7 @@
             android:shadowColor="@android:color/transparent"
             android:text="Training"
             android:textColor="@color/white" />
+
         <Button
             android:id="@+id/sendEmailButton"
             android:layout_width="match_parent"
@@ -61,6 +62,21 @@
             android:padding="15dp"
             android:shadowColor="@android:color/transparent"
             android:text="Send Email"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/sendEmailResume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shapesignup"
+            android:padding="15dp"
+            android:shadowColor="@android:color/transparent"
+            android:text="Resume"
             android:textColor="@color/white" />
 
     </RelativeLayout>

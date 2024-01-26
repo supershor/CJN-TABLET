@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Lifecycle;
@@ -73,5 +74,11 @@ public class UIHelper {
 
     public static boolean isValidPhoneNumber(String phoneNumber) {
         return PhoneNumberUtils.isGlobalPhoneNumber(phoneNumber);
+    }
+
+    public static void toast(Context context, String message) {
+        if (context != null && message != null && !message.isEmpty()) {
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        }
     }
 }

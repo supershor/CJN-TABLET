@@ -1,5 +1,6 @@
 package com.example.cjnnetwork.BottomNavigation;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -48,6 +50,7 @@ public class TrainingNavigationFragment extends Fragment {
     private FragmentTrainingNavigationBinding binding;
     private static final int REQUEST_VIDEO_PICK = 1;
     private static final int REQUEST_EXTERNAL_STORAGE = 101;
+    private static final int READ_EXTERNAL_STORAGE_REQUEST = 1;
 
     Uri uri;
     private static final int REQUEST_VIDEO_PERMISSION = 100;
@@ -79,6 +82,14 @@ public class TrainingNavigationFragment extends Fragment {
 //                UIHelper.getInstance().showMessage(requireContext(),"Coming Soon ");
                 pickVideo();
 
+            }
+        });
+        binding.sendEmailResume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkPermission()) {
+                    openPdfFile();
+                }
             }
         });
 
@@ -251,5 +262,40 @@ public class TrainingNavigationFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+
+    private boolean checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // Permission is not granted
+                ActivityCompat.requestPermissions(requireActivity(),
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                        READ_EXTERNAL_STORAGE_REQUEST);
+                return false;
+            }
+        }
+        // Permission is granted
+        return true;
+    }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+//                                           @NonNull int[] grantResults) {
+//        if (requestCode == READ_EXTERNAL_STORAGE_REQUEST) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                // Permission granted, proceed with opening the PDF file
+//                openPdfFile();
+//            } else {
+//                // Permission denied, show a message or handle accordingly
+//                Toast.makeText(requireContext(), "Permission denied. Unable to open PDF.", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+
+    private void openPdfFile() {
+        // Your existing code for opening the PDF file
+        // ...
     }
 }

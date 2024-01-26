@@ -12,11 +12,16 @@ import android.widget.Toast;
 
 import com.example.cjnnetwork.R;
 import com.example.cjnnetwork.databinding.FragmentProfileNavigationBinding;
+import com.example.cjnnetwork.model.LoginDataOutput;
 import com.example.cjnnetwork.profile.AddProfileInfo;
+import com.example.cjnnetwork.profile.EditProfileActivity;
+import com.example.cjnnetwork.utils.SingletonUserData;
 
 public class ProfileNavigationFragment extends Fragment {
 
     private FragmentProfileNavigationBinding binding;
+    LoginDataOutput loginDataOutput = SingletonUserData.getInstance().getLoginDataOutput();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +34,15 @@ public class ProfileNavigationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding=FragmentProfileNavigationBinding.inflate(inflater, container, false);
+
+        binding.ivEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(requireContext(), EditProfileActivity.class));
+            }
+        });
+
+        setdata();
 
 //        binding.btnProfile.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -44,5 +58,12 @@ public class ProfileNavigationFragment extends Fragment {
 //        });
 
         return binding.getRoot();
+    }
+
+    private void setdata() {
+        binding.tvName.setText(loginDataOutput.getFullname());
+        binding.tvNameProfile.setText(loginDataOutput.getFullname());
+        binding.tvEmailProfile.setText(loginDataOutput.getEmail());
+        binding.tvContactProfile.setText(loginDataOutput.getMobile());
     }
 }

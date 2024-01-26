@@ -1,30 +1,31 @@
 package com.example.cjnnetwork.model;
 
-import com.google.gson.annotations.Expose;
+import com.google.gson.JsonObject;
 import com.google.gson.annotations.SerializedName;
 
 public class ResponseParameterLogin {
 
     @SerializedName("responseStatus")
-    @Expose
-    private int responseStatus;
-    @SerializedName("responseMessage")
-    @Expose
-    private String responseMessage;
+    private String responseStatus;
 
-    public int getResponseStatus() {
+    @SerializedName("responseMessage")
+    private ResponseMessage responseMessage; // Use Object to handle both String and ResponseMessage
+
+    public String getResponseStatus() {
         return responseStatus;
     }
 
-    public void setResponseStatus(int responseStatus) {
-        this.responseStatus = responseStatus;
-    }
-
-    public String getResponseMessage() {
+    public ResponseMessage getResponseMessage() {
         return responseMessage;
     }
 
-    public void setResponseMessage(String responseMessage) {
+    public void setResponseStatus(String responseStatus) {
+        this.responseStatus = responseStatus;
+    }
+
+    public void setResponseMessage(ResponseMessage responseMessage) {
         this.responseMessage = responseMessage;
     }
+
+
 }

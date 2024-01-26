@@ -75,7 +75,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/iv_notification"
+                    android:id="@+id/iv_edit_profile"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_35sdp"
                     android:layout_alignParentRight="true"
@@ -83,7 +83,7 @@
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginEnd="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_8sdp"
-                    android:src="@drawable/iv_dash" />
+                    android:src="@drawable/baseline_edit_24" />
 
 
             </RelativeLayout>
@@ -139,7 +139,7 @@
                             android:id="@+id/tvName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="John Doe"
+                            android:text="___"
                             android:textSize="@dimen/_13sdp"
                             android:textStyle="bold"
                             android:textColor="@color/black"/>
@@ -148,7 +148,7 @@
                             android:id="@+id/tvProfileTitle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="UI/UX Designer"
+                            android:text="_________"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
@@ -249,7 +249,7 @@
                         android:id="@+id/tv_gender_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Male"
+                        android:text="________"
                         android:textStyle="bold"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/black"
@@ -275,7 +275,7 @@
                         android:id="@+id/tv_dob_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="01/12/2001"
+                        android:text="_________"
                         android:textStyle="bold"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/black"
@@ -370,31 +370,25 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="- UI/UX designing"
+                            android:text="-------"
                             android:textSize="@dimen/_12sdp"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="- C++"
+                            android:text="--------"
                             android:textSize="@dimen/_12sdp"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="- java"
+                            android:text="--------"
                             android:textSize="@dimen/_12sdp"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="- Data structure"
-                            android:textSize="@dimen/_12sdp"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="- Software Testing"
+                            android:text="---------"
                             android:textSize="@dimen/_12sdp"/>
 
                     </LinearLayout>
@@ -429,7 +423,7 @@
                         android:id="@+id/tvProjectDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="24 Jan 2021"
+                        android:text="____"
                         android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:textSize="@dimen/_12sdp"/>
@@ -438,7 +432,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_6sdp"
-                        android:text="The Student login project allows students to securely log in, providing a personalized and secure expeгenca"
+                        android:text="___________"
                         android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:textSize="@dimen/_12sdp"/>
@@ -466,7 +460,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="URL: https://github.com/acciojob/.git"
+                            android:text="_____________________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/black"
                             android:layout_marginLeft="@dimen/_5sdp"/>
@@ -493,7 +487,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="24 Jan 2021"
+                        android:text="______"
                         android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:textSize="@dimen/_12sdp"/>
@@ -501,7 +495,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_6sdp"
-                        android:text="The Student login project allows students to securely log in, providing a personalized and secure expeгenca"
+                        android:text="____________________"
                         android:textColor="@color/black"
                         android:layout_marginLeft="@dimen/_10sdp"
                         android:textSize="@dimen/_12sdp"/>
@@ -528,7 +522,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="URL: https://github.com/acciojob/.git"
+                            android:text="_____________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/black"
                             android:layout_marginLeft="@dimen/_5sdp"/>
@@ -540,7 +534,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Extra Curricular Activities: "
+                    android:text="_____________ "
                     android:textSize="@dimen/_13sdp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -558,7 +552,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="- Singing"
+                    android:text="-_________"
                     android:textSize="@dimen/_12sdp"
                     android:layout_marginLeft="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_8sdp"/>
@@ -566,21 +560,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="- Dance"
+                    android:text="-__________"
                     android:textSize="@dimen/_12sdp"
                     android:layout_marginLeft="@dimen/_12sdp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="- Tree Plantation"
+                    android:text="______________"
                     android:textSize="@dimen/_12sdp"
                     android:layout_marginLeft="@dimen/_12sdp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Languages: "
+                    android:text="______________________ "
                     android:textSize="@dimen/_13sdp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -677,7 +671,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_6sdp"
-                            android:text="Blue Planet Info Solutions Pvt. Ltd,Pune,Maharashtra,India"
+                            android:text="______________"
                             android:textColor="@color/black"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:textSize="@dimen/_12sdp"/>
@@ -709,7 +703,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_6sdp"
-                            android:text="Blue Planet Info Solutions Pvt. Ltd,Pune,Maharashtra,India"
+                            android:text="_________________"
                             android:textColor="@color/black"
                             android:layout_marginLeft="@dimen/_10sdp"
                             android:textSize="@dimen/_12sdp"/>
@@ -752,7 +746,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="DY Patil College"
+                            android:text="___________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -760,7 +754,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="10th : 87%"
+                            android:text="_____________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -768,7 +762,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2017 - 2021 April"
+                            android:text="_______________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/dark_grey"
                             android:textStyle="bold"
@@ -810,7 +804,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="DY Patil College"
+                            android:text="_____________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -818,7 +812,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="10th : 87%"
+                            android:text="___________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -826,7 +820,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2017 - 2021 April"
+                            android:text="__________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/dark_grey"
                             android:textStyle="bold"
@@ -867,7 +861,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="DY Patil College"
+                            android:text="___________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -875,7 +869,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="10th : 87%"
+                            android:text="_______________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/black"
                             android:textStyle="bold"
@@ -883,7 +877,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="2017 - 2021 April"
+                            android:text="___________"
                             android:textSize="@dimen/_12sdp"
                             android:textColor="@color/dark_grey"
                             android:textStyle="bold"
@@ -930,7 +924,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Android Developer"
+                        android:text="____________"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -940,7 +934,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Blue Planet InfoSolutions Pvt. Ltd,India"
+                        android:text="________________________"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_2sdp"
@@ -949,7 +943,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2017 - 2021 April"
+                        android:text="__________"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/dark_grey"
                         android:textStyle="bold"
@@ -957,7 +951,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pune,Maharashtra,India"
+                        android:text="_______________"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/dark_grey"
                         android:textStyle="bold"
@@ -987,7 +981,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Android Developer"
+                        android:text="_______________"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -997,7 +991,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Blue Planet InfoSolutions Pvt. Ltd,India"
+                        android:text="__________________"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/black"
                         android:layout_marginTop="@dimen/_2sdp"
@@ -1006,7 +1000,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2017 - 2021 April"
+                        android:text="____________________"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/dark_grey"
                         android:textStyle="bold"
@@ -1014,7 +1008,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pune,Maharashtra,India"
+                        android:text="_____________________"
                         android:textSize="@dimen/_12sdp"
                         android:textColor="@color/dark_grey"
                         android:textStyle="bold"
@@ -1026,7 +1020,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Employment Type: "
+                    android:text="_______________________"
                     android:textSize="@dimen/_13sdp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
@@ -1055,7 +1049,7 @@
                             android:gravity="center"
                             android:paddingHorizontal="@dimen/_10sdp"
                             android:paddingVertical="@dimen/_2sdp"
-                            android:text="Full Time Job"
+                            android:text="______________________"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
@@ -1079,7 +1073,7 @@
                             android:gravity="center"
                             android:paddingHorizontal="@dimen/_10sdp"
                             android:paddingVertical="@dimen/_2sdp"
-                            android:text="Part Time Job"
+                            android:text="______________________"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
@@ -1122,7 +1116,7 @@
                             android:gravity="center"
                             android:paddingHorizontal="@dimen/_10sdp"
                             android:paddingVertical="@dimen/_2sdp"
-                            android:text="App Development"
+                            android:text="___________"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
@@ -1147,7 +1141,7 @@
                             android:gravity="center"
                             android:paddingHorizontal="@dimen/_10sdp"
                             android:paddingVertical="@dimen/_2sdp"
-                            android:text="Software Tester"
+                            android:text="_____________"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp" />
 
@@ -1155,8 +1149,6 @@
 
                 </LinearLayout>
             </LinearLayout>
-
-
         </ScrollView>
     </RelativeLayout>
 

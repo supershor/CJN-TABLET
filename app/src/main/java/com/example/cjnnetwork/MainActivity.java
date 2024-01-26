@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.PatternMatcher;
+import android.provider.Contacts;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +15,6 @@ import android.widget.Toast;
 import com.example.cjnnetwork.authentication.RegisterActivity;
 import com.example.cjnnetwork.model.CjnSharedPreferences;
 import com.example.cjnnetwork.model.InputParamerLogin;
-import com.example.cjnnetwork.model.OutputLogin;
 import com.example.cjnnetwork.model.ResponseParameterLogin;
 import com.example.cjnnetwork.model.ResponseParameterRegister;
 import com.example.cjnnetwork.model.Student;
@@ -22,6 +22,7 @@ import com.example.cjnnetwork.network.ApiClient;
 import com.example.cjnnetwork.network.AuthenticationApi;
 import com.example.cjnnetwork.network.WebserviceConstants;
 import com.example.cjnnetwork.utils.GlobalInterface;
+import com.example.cjnnetwork.utils.SingletonUserData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -37,6 +38,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.example.cjnnetwork.databinding.ActivityMainBinding;
 
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         CjnSharedPreferences.init(this);
 
-        _initUI();
+//        _initUI();
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         binding.login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+//                startActivity(new Intent(MainActivity.this, DashboardActivity.class));
 
                 String email=binding.etEmail.getText().toString();
                 String password=binding.etPassword.getText().toString();
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     login(email,password);
-                    startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+//                    startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                 }
 
             }
@@ -103,28 +106,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.rdgAppType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO Auto-generated method stub
-                if (checkedId == R.id.rbtn_dev) {
-                    enviromentType = GlobalInterface.DEV;
-                    CjnSharedPreferences.setAppType(GlobalInterface.DEV);
-                    WebserviceConstants.setAppType(GlobalInterface.DEV);
-                } else if (checkedId == R.id.rbtn_test) {
-                    enviromentType = GlobalInterface.TEST;
-                    CjnSharedPreferences.setAppType(GlobalInterface.TEST);
-                    WebserviceConstants.setAppType(GlobalInterface.TEST);
-                } else if (checkedId == R.id.rbtn_production) {
-                    enviromentType = GlobalInterface.PRODUCTION;
-                    CjnSharedPreferences.setAppType(GlobalInterface.PRODUCTION);
-                    WebserviceConstants.setAppType(GlobalInterface.PRODUCTION);
-                }
-
-            }
-
-        });
+//        binding.rdgAppType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                // TODO Auto-generated method stub
+//                if (checkedId == R.id.rbtn_dev) {
+//                    enviromentType = GlobalInterface.DEV;
+//                    CjnSharedPreferences.setAppType(GlobalInterface.DEV);
+//                    WebserviceConstants.setAppType(GlobalInterface.DEV);
+//                } else if (checkedId == R.id.rbtn_test) {
+//                    enviromentType = GlobalInterface.TEST;
+//                    CjnSharedPreferences.setAppType(GlobalInterface.TEST);
+//                    WebserviceConstants.setAppType(GlobalInterface.TEST);
+//                } else if (checkedId == R.id.rbtn_production) {
+//                    enviromentType = GlobalInterface.PRODUCTION;
+//                    CjnSharedPreferences.setAppType(GlobalInterface.PRODUCTION);
+//                    WebserviceConstants.setAppType(GlobalInterface.PRODUCTION);
+//                }
+//
+//            }
+//
+//        });
 
     }
 
@@ -171,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login(final String email, final String password) {
-
+        binding.pbLogin.setVisibility(View.VISIBLE);
         AuthenticationApi authenticationApi = ApiClient.getClient().create(AuthenticationApi.class);
 
         InputParamerLogin d = new InputParamerLogin();
@@ -184,16 +187,21 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<ResponseParameterLogin>() {
             @Override
             public void onResponse(Call<ResponseParameterLogin> call, Response<ResponseParameterLogin> response) {
+                binding.pbLogin.setVisibility(View.GONE);
                 Log.e("TAG", "Login Response: " + new Gson().toJson(response.body()));
+//                Log.e("TAG", "Login Response: " + new Gson().toJson(response.body().getResponseStatus()));
                 if (response.body() != null) {
-                    error_decscription = response.body().getResponseMessage();
-                    if (response.body().getResponseStatus() == 200) {
 
+                    if (Objects.equals(response.body().getResponseStatus(), "true")) {
+                        UIHelper.toast(MainActivity.this,"Logged In Successfully");
+                        SingletonUserData.getInstance().setLoginDataOutput(response.body().getResponseMessage().getData());
+                        startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                     } else {
-
+                        String errorMessage = response.body().getResponseMessage().toString();
+                        UIHelper.toast(MainActivity.this,errorMessage);
                     }
                 } else {
-
+                    UIHelper.toast(MainActivity.this,"Failed To Log In");
                 }
             }
 
@@ -201,6 +209,8 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<ResponseParameterLogin> call, Throwable t) {
                 //validationDialog();
                 Log.d("myResponse:", "MSG" + t.toString());
+                UIHelper.toast(MainActivity.this,t.toString());
+
             }
         });
     }
