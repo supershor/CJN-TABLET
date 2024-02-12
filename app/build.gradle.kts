@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.cjnnetwork"
+    namespace = "com.bpsi.cjnnetwork"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.cjnnetwork"
+        applicationId = "com.bpsi.cjnnetwork"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -60,9 +60,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
-    implementation(files("libs/activation.jar"))
+   /* implementation(files("libs/activation.jar"))
     implementation(files("libs/additionnal.jar"))
-    implementation(files("libs/mail.jar"))
+    implementation(files("libs/mail.jar"))*/
 //    implementation("com.github.barteksc:android-pdf-viewer:2.8.2")
 
 
