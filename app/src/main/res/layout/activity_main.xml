@@ -199,8 +199,8 @@
             android:background="#e5f3fe"
             android:backgroundTint="#e5f3fe"
             android:gravity="center_horizontal"
-            app:cardCornerRadius="@dimen/_10sdp"
             android:visibility="gone"
+            app:cardCornerRadius="@dimen/_10sdp"
             app:cardElevation="@dimen/_4sdp">
 
             <RelativeLayout
