@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".JobDescription"
+            android:exported="false" />
+        <activity
             android:name=".profile.EditProfileActivity"
             android:exported="false" />
         <activity
