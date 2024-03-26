@@ -3,5 +3,6 @@
     <item android:color="@color/login_color" android:state_focused="true"/>
     <item android:color="@color/login_color" android:state_hovered="true"/>
     <item android:color="@color/login_color"/>
+    <item android:color="#EBA6BE"/>
 
 </selector>

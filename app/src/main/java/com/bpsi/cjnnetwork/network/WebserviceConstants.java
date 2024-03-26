@@ -23,6 +23,7 @@ public class WebserviceConstants {
     public static final String SMARTCOOKIE_COOKIE_SPONSOR_DEFAULT_IMG = "http://smartcookie.bpsi.us/Assets/images/sp/profile/newlogo.png";
     public static final String LOGIN_API = CJN_BASE_URL+"/login";
     public static final String REGISTER_API = CJN_BASE_URL+"/signup";
+    public static final String READ_JOB_API = CJN_BASE_URL+"/readjob";
     public static final String GET_JOBDESCRIPTION = "http://localhost.devcjnnow.com//api2/api2.php?x=jobdesc";
     public static String SMART_COOKIE_STUDNET_BASE_URL = "smartcookie.in/";
     public static void setAppType(String Apptype) {
