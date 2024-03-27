@@ -22,11 +22,11 @@
         android:id="@+id/textView"
         android:layout_width="402dp"
         android:layout_height="112dp"
-        android:layout_marginTop="160dp"
-        android:text="Assesment Room From Smart Cookies."
+        android:layout_marginTop="36dp"
+        android:text="Assessment Room From Smart Cookies."
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

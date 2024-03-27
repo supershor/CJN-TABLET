@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".tabaccessment">
 
+
     <ImageView
         android:id="@+id/cjnlogo"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_40sdp"
 
         app:srcCompat="@drawable/cjn_logo"
         tools:ignore="MissingConstraints"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
@@ -33,10 +34,10 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="@dimen/_60sdp"
         android:id="@+id/pinkbg"
-        android:layout_marginHorizontal="100dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_3sdp"
         android:background="#EBA6BE"
         app:layout_constraintTop_toBottomOf="@id/Trainingrm"/>
 
@@ -46,9 +47,9 @@
         android:id="@+id/trainingfortv"
         app:layout_constraintTop_toTopOf="@id/pinkbg"
         android:text="Training For:"
-        android:textSize="70dp"
+        android:textSize="@dimen/_18sdp"
         app:layout_constraintStart_toStartOf="@id/pinkbg"
-        android:layout_marginStart="10dp"/>
+        android:layout_marginStart="@dimen/_20sdp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -56,33 +57,71 @@
         android:id="@+id/Trainernametv"
         app:layout_constraintTop_toBottomOf="@id/trainingfortv"
         android:text="Trainer Name:"
-        android:textSize="70dp"
+        android:textSize="@dimen/_18sdp"
         app:layout_constraintStart_toStartOf="@id/pinkbg"
-        android:layout_marginStart="10dp"/>
+        android:layout_marginStart="@dimen/_20sdp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/paymentrequiredtv"
-        android:text="Payment Required:"
         app:layout_constraintTop_toBottomOf="@id/pinkbg"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@id/pinkbg"
-        android:layout_marginLeft="300dp"/>
+        android:id="@+id/constraintpayment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/paymentlinktv"
-        android:text="Payment Link: www.link.com"
-        app:layout_constraintTop_toBottomOf="@id/paymentrequiredtv"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toStartOf="@id/pinkbg"
-        android:layout_marginLeft="300dp"/>
+        <TextView
+            android:id="@+id/paymentrequiredtv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Payment Required:"
+            app:layout_constraintTop_toTopOf="@id/constraintpayment"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/paymentrequiredinfo"
+            app:layout_constraintHorizontal_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/paymentrequiredinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/constraintpayment"
+            android:text="getting status"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toEndOf="@id/paymentrequiredtv"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/paymentlinktv"
+            android:text="Payment Link:"
+            app:layout_constraintTop_toBottomOf="@id/paymentrequiredtv"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/paymentlink"
+            android:text="Payment Link: www.link.com"
+            app:layout_constraintTop_toBottomOf="@id/paymentlinktv"
+            android:textSize="60sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_blue"
+            android:layout_marginTop="@dimen/_2sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 
 
 
