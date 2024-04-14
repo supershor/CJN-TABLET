@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/cjnlogo"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_55sdp"
+        android:layout_height="@dimen/_45sdp"
 
         app:srcCompat="@drawable/cjn_logo"
         tools:ignore="MissingConstraints"

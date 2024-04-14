@@ -15,4 +15,16 @@ public class ResponseMessage {
     public void setData(LoginDataOutput data) {
         this.data = data;
     }
-}
+
+        @SerializedName("Display")
+        private Display display;
+
+        public Display getDisplay() {
+            return display;
+        }
+
+        public void setDisplay(Display display) {
+            this.display = display;
+
+    }}
+

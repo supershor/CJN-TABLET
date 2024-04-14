@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+  <ImageView
+      android:layout_width="250dp"
+      android:layout_height="130dp"
+      android:src="@drawable/cjn_logo"
+      android:layout_marginTop="0dp"
+      android:layout_marginStart="40dp"
+      android:contentDescription="logo"
+      android:id="@+id/tvcjnlogo"
+      />
+    <ScrollView
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:id="@+id/scrlv"
+        android:layout_marginTop="130dp"
+        android:layout_marginStart="10dp"
+        >
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </ScrollView>
+    <FrameLayout
+        android:id="@+id/rightFrameLayout"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="200dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/advertisement_example"/>
+
+        <!-- Add your advertisement component here -->
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:id="@+id/statsLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_toEndOf="@id/scrlv"
+        android:orientation="horizontal"
+        android:layout_toStartOf="@id/rightFrameLayout"
+        >
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/openingtv"
+            android:text="Openings"
+            android:textStyle="bold"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/openingnumbers"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:hint="1500"
+            android:textSize="@dimen/_10sdp"
+            android:gravity="center"
+            android:layout_marginTop="60dp" />
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/interviewstv"
+            android:text="Interviews"
+            android:textStyle="bold"
+            android:textSize="@dimen/_12sdp"
+            android:layout_toEndOf="@id/openingtv"
+            android:layout_marginStart="50dp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/intervirenumber"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:hint="2000"
+            android:textSize="@dimen/_10sdp"
+            android:gravity="center"
+            android:layout_toEndOf="@id/openingtv"
+            android:layout_marginTop="60dp" />
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/offeredtv"
+            android:text="Offered"
+            android:textStyle="bold"
+            android:textSize="@dimen/_12sdp"
+            android:layout_toEndOf="@id/interviewstv"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/offerednumber"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:hint="1200"
+            android:textSize="@dimen/_10sdp"
+            android:gravity="center"
+            android:layout_toEndOf="@id/interviewstv"
+            android:layout_marginTop="60dp" />
+
+
+        <!-- Add your stats components here -->
+
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="200dp"
+        android:id="@+id/videoframe"
+        android:layout_toEndOf="@id/scrlv"
+        android:layout_toStartOf="@id/rightFrameLayout"
+        android:layout_marginTop="130dp">
+
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/exoplaytv"
+            android:keepScreenOn="true"/>
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:src="@drawable/interview_vid_example"/>-->
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/qrCodesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@id/scrlv"
+        android:layout_marginTop="595dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="start"
+            android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:src="@drawable/qr_example"
+            android:id="@+id/qr1"
+            android:layout_gravity="top"
+
+            />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Join Now"
+                android:backgroundTint="@color/dark_blue"
+                android:textSize="@dimen/_7sdp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="
+top">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:id="@+id/qr2"
+            android:src="@drawable/qr_example"
+            android:layout_gravity="top
+"
+            />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Join Now"
+                android:backgroundTint="@color/dark_blue"
+                android:textSize="@dimen/_7sdp"/></LinearLayout>
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="
+top">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:id="@+id/qr3"
+                android:src="@drawable/qr_example"
+                android:layout_gravity="top
+"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Join Now"
+                android:backgroundTint="@color/dark_blue"
+                android:textSize="@dimen/_7sdp"/></LinearLayout>
+        <LinearLayout
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:orientation="vertical"
+            android:layout_gravity="
+top">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:id="@+id/qr4"
+                android:src="@drawable/qr_example"
+                android:layout_gravity="top
+"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Join Now"
+                android:backgroundTint="@color/dark_blue"
+                android:textSize="@dimen/_7sdp"/></LinearLayout>
+
+
+        <!-- Add your QR code images here -->
+
+    </LinearLayout>
+
+
+</RelativeLayout>

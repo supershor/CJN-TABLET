@@ -86,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
                     binding.etPassword.setError("Please enter Password greater than 6 characters");
                 }
                 else{
-                    login(email,password);
+                                        login(email,password);
+                    Intent vv = new Intent(MainActivity.this, tvdashboard.class);
+                    startActivity(vv);
 //                    startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                 }
 
@@ -156,7 +158,8 @@ public class MainActivity extends AppCompatActivity {
                             String userEmail = user.getEmail();
                             String userName = user.getDisplayName();
                             Toast.makeText(this, "Used Signed In Succesfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+//                            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                            startActivity(new Intent(MainActivity.this, tvdashboard.class));
 
                             Log.d("TAG", "User email: " + userEmail);
                             Log.d("TAG", "User name: " + userName);
@@ -190,7 +193,8 @@ public class MainActivity extends AppCompatActivity {
                     if (Objects.equals(response.body().getResponseStatus(), "true")) {
                         UIHelper.toast(MainActivity.this,"Logged In Successfully");
                         SingletonUserData.getInstance().setLoginDataOutput(response.body().getResponseMessage().getData());
-                        startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+//                        startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                        startActivity(new Intent(MainActivity.this, tvdashboard.class));
                     } else {
                         String errorMessage = response.body().getResponseMessage().toString();
                         UIHelper.toast(MainActivity.this,errorMessage);
@@ -222,5 +226,7 @@ public class MainActivity extends AppCompatActivity {
             WebserviceConstants.setAppType(GlobalInterface.DEV);
         }
     }
+
+
 
 }

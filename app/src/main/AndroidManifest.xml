@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".tvdashboard"
+            android:exported="false" />
+        <activity
             android:name=".tabaccessment"
             android:exported="false" />
         <activity
@@ -53,8 +56,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
