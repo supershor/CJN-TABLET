@@ -75,44 +75,6 @@ public class tvdashboard extends AppCompatActivity {
                 UIHelper.toast(tvdashboard.this,t.toString());
             }}); }
 
-    public void getVideoUrlFromApi() {
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-
-        Call<ApiResponse> call = apiService.getTvShowInfo("s101");
-        Log.e("request_api_url", "" + call.request().url());
-
-        call.enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    ResponseMessage responseMessage = response.body().getResponseMessage();
-                    if (responseMessage != null) {
-                        Display display = responseMessage.getDisplay();
-                        if (display != null && display.getVideos() != null && !display.getVideos().isEmpty()) {
-                            String videoUrl = display.getVideos().get(0).getVideoUrl();
-                            if (videoUrl != null) {
-                                preparePlayer(videoUrl);
-                            } else {
-                                UIHelper.toast(tvdashboard.this, "Video URL not found");
-                            }
-                        } else {
-                            UIHelper.toast(tvdashboard.this, "No videos available");
-                        }
-                    } else {
-                        UIHelper.toast(tvdashboard.this, "Response message is null");
-                    }
-                } else {
-                    UIHelper.toast(tvdashboard.this, "Failed to retrieve video URL");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
-                Log.e("Video API Call", "Failed", t);
-                UIHelper.toast(tvdashboard.this, "Failed to retrieve video URL: " + t.getMessage());
-            }
-        });
-    }
 
 
 
