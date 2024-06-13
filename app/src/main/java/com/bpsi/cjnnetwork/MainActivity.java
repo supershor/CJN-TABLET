@@ -87,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                                         login(email,password);
-                    Intent vv = new Intent(MainActivity.this, tvdashboard.class);
-                    startActivity(vv);
+                   /* Intent vv = new Intent(MainActivity.this, tvdashboard.class);
+                    startActivity(vv);*/
 //                    startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                 }
 
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                             String userName = user.getDisplayName();
                             Toast.makeText(this, "Used Signed In Succesfully", Toast.LENGTH_SHORT).show();
 //                            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
-                            startActivity(new Intent(MainActivity.this, tvdashboard.class));
+                            startActivity(new Intent(MainActivity.this, TVDashBoard.class));
 
                             Log.d("TAG", "User email: " + userEmail);
                             Log.d("TAG", "User name: " + userName);
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
                         UIHelper.toast(MainActivity.this,"Logged In Successfully");
                         SingletonUserData.getInstance().setLoginDataOutput(response.body().getResponseMessage().getData());
 //                        startActivity(new Intent(MainActivity.this, DashboardActivity.class));
-                        startActivity(new Intent(MainActivity.this, tvdashboard.class));
+                        startActivity(new Intent(MainActivity.this, TVDashBoard.class));
                     } else {
                         String errorMessage = response.body().getResponseMessage().toString();
                         UIHelper.toast(MainActivity.this,errorMessage);

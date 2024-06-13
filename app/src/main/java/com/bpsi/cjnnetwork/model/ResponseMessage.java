@@ -1,30 +1,54 @@
+
 package com.bpsi.cjnnetwork.model;
 
+  import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseMessage {
-    @SerializedName("data")
+ public class ResponseMessage implements Parcelable
+{
+
+    @SerializedName("Display")
     @Expose
-    private LoginDataOutput data;
+    private Display display;
+    public final static Creator<ResponseMessage> CREATOR = new Creator<ResponseMessage>() {
 
-    public LoginDataOutput getData() {
-        return data;
-    }
 
-    public void setData(LoginDataOutput data) {
-        this.data = data;
-    }
-
-        @SerializedName("Display")
-        private Display display;
-
-        public Display getDisplay() {
-            return display;
+        public ResponseMessage createFromParcel(android.os.Parcel in) {
+            return new ResponseMessage(in);
         }
 
-        public void setDisplay(Display display) {
-            this.display = display;
+        public ResponseMessage[] newArray(int size) {
+            return (new ResponseMessage[size]);
+        }
 
-    }}
+    }
+    ;
 
+    @SuppressWarnings({
+        "unchecked"
+    })
+    protected ResponseMessage(android.os.Parcel in) {
+        this.display = ((Display) in.readValue((Display.class.getClassLoader())));
+    }
+
+    public ResponseMessage() {
+    }
+
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
+
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(display);
+    }
+
+    public int describeContents() {
+        return  0;
+    }
+
+}

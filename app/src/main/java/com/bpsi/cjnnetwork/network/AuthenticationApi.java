@@ -1,6 +1,5 @@
 package com.bpsi.cjnnetwork.network;
 
-import com.bpsi.cjnnetwork.model.Display;
 import com.bpsi.cjnnetwork.model.InputParamerLogin;
 import com.bpsi.cjnnetwork.model.InputParameterJobDec;
 import com.bpsi.cjnnetwork.model.InputRegisterParameters;
@@ -19,7 +18,7 @@ public interface AuthenticationApi {
     @POST(WebserviceConstants.LOGIN_API)
     Call<ResponseParameterLogin> login(@Body InputParamerLogin d);
 
-    @POST(WebserviceConstants.REGISTER_API)
+    @GET(WebserviceConstants.REGISTER_API)
     Call<ResponseParameterRegister> register(@Body InputRegisterParameters d);
 
     @POST(WebserviceConstants.GET_JOBDESCRIPTION)

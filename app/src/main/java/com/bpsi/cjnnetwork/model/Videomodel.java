@@ -1,106 +1,67 @@
+
 package com.bpsi.cjnnetwork.model;
 
+  import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Videomodel {
-    @SerializedName("id")
+ public class Videomodel implements Parcelable
+{
+
+    @SerializedName("responseStatus")
     @Expose
-    private Integer id;
-    @SerializedName("video_id")
+    private Boolean responseStatus;
+    @SerializedName("responseMessage")
     @Expose
-    private Integer videoId;
-    @SerializedName("video_file_name")
-    @Expose
-    private String videoFileName;
-    @SerializedName("video_url")
-    @Expose
-    private String videoUrl;
-    @SerializedName("video_timestamp")
-    @Expose
-    private String videoTimestamp;
-    @SerializedName("video_created_by")
-    @Expose
-    private String videoCreatedBy;
-    @SerializedName("video_owner")
-    @Expose
-    private String videoOwner;
-    @SerializedName("created_at")
-    @Expose
-    private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
-    private String updatedAt;
+    private ResponseMessage responseMessage;
+    public final static Creator<Videomodel> CREATOR = new Creator<Videomodel>() {
 
-    public Integer getId() {
-        return id;
+
+        public Videomodel createFromParcel(android.os.Parcel in) {
+            return new Videomodel(in);
+        }
+
+        public Videomodel[] newArray(int size) {
+            return (new Videomodel[size]);
+        }
+
+    }
+    ;
+
+    @SuppressWarnings({
+        "unchecked"
+    })
+    protected Videomodel(android.os.Parcel in) {
+        this.responseStatus = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
+        this.responseMessage = ((ResponseMessage) in.readValue((ResponseMessage.class.getClassLoader())));
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Videomodel() {
     }
 
-    public Integer getVideoId() {
-        return videoId;
+    public Boolean getResponseStatus() {
+        return responseStatus;
     }
 
-    public void setVideoId(Integer videoId) {
-        this.videoId = videoId;
+    public void setResponseStatus(Boolean responseStatus) {
+        this.responseStatus = responseStatus;
     }
 
-    public String getVideoFileName() {
-        return videoFileName;
+    public ResponseMessage getResponseMessage() {
+        return responseMessage;
     }
 
-    public void setVideoFileName(String videoFileName) {
-        this.videoFileName = videoFileName;
+    public void setResponseMessage(ResponseMessage responseMessage) {
+        this.responseMessage = responseMessage;
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
+    public void writeToParcel(android.os.Parcel dest, int flags) {
+        dest.writeValue(responseStatus);
+        dest.writeValue(responseMessage);
     }
 
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
+    public int describeContents() {
+        return  0;
     }
 
-    public String getVideoTimestamp() {
-        return videoTimestamp;
-    }
-
-    public void setVideoTimestamp(String videoTimestamp) {
-        this.videoTimestamp = videoTimestamp;
-    }
-
-    public String getVideoCreatedBy() {
-        return videoCreatedBy;
-    }
-
-    public void setVideoCreatedBy(String videoCreatedBy) {
-        this.videoCreatedBy = videoCreatedBy;
-    }
-
-    public String getVideoOwner() {
-        return videoOwner;
-    }
-
-    public void setVideoOwner(String videoOwner) {
-        this.videoOwner = videoOwner;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }
