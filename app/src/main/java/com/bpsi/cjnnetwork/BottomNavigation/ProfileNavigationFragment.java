@@ -5,9 +5,11 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bpsi.cjnnetwork.databinding.FragmentProfileNavigationBinding;
 import com.bpsi.cjnnetwork.model.LoginDataOutput;
@@ -58,9 +60,14 @@ public class ProfileNavigationFragment extends Fragment {
     }
 
     private void setdata() {
-        binding.tvName.setText(loginDataOutput.getFullname());
-        binding.tvNameProfile.setText(loginDataOutput.getFullname());
-        binding.tvEmailProfile.setText(loginDataOutput.getEmail());
-        binding.tvContactProfile.setText(loginDataOutput.getMobile());
+            try {
+                binding.tvName.setText(loginDataOutput.getFullname());
+                binding.tvNameProfile.setText(loginDataOutput.getFullname());
+                binding.tvEmailProfile.setText(loginDataOutput.getEmail());
+                binding.tvContactProfile.setText(loginDataOutput.getMobile());
+            }catch (Exception e){
+                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e( "setdata:----------------",e.toString());
+            }
     }
 }

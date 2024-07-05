@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.bpsi.cjnnetwork.Dashboard_all_in_one.TVDashBoard;
 import com.bpsi.cjnnetwork.authentication.RegisterActivity;
 import com.bpsi.cjnnetwork.model.CjnSharedPreferences;
 import com.bpsi.cjnnetwork.model.InputParamerLogin;
@@ -17,7 +18,6 @@ import com.bpsi.cjnnetwork.network.ApiClient;
 import com.bpsi.cjnnetwork.network.AuthenticationApi;
 import com.bpsi.cjnnetwork.network.WebserviceConstants;
 import com.bpsi.cjnnetwork.utils.GlobalInterface;
-import com.bpsi.cjnnetwork.utils.SingletonUserData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (Objects.equals(response.body().getResponseStatus(), "true")) {
                         UIHelper.toast(MainActivity.this,"Logged In Successfully");
-                        SingletonUserData.getInstance().setLoginDataOutput(response.body().getResponseMessage().getData());
+                        //SingletonUserData.getInstance().setLoginDataOutput(response.body().getResponseMessage().getData());
 //                        startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                         startActivity(new Intent(MainActivity.this, TVDashBoard.class));
                     } else {

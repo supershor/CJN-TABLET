@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
@@ -11,8 +13,8 @@ android {
         applicationId = "com.bpsi.cjnnetwork"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 24
+        versionName = "24.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,7 +34,7 @@ android {
         viewBinding = true
     }
 
-    packagingOptions{
+    fun Packaging.() {
         exclude("META-INF/NOTICE.md")
         exclude("META-INF/LICENCE.md")
     }
@@ -41,11 +43,17 @@ android {
 
 dependencies {
 
+    implementation ("com.intuit.ssp:ssp-android:1.1.1")
+    implementation("com.android.volley:volley:1.2.1")
+    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth:22.3.0")
     implementation("com.google.firebase:firebase-database:20.3.0")
+    implementation("androidx.privacysandbox.tools:tools-core:1.0.0-alpha09")
     testImplementation("junit:junit:4.13.2")
     implementation("com.github.TutorialsAndroid:GButton:v1.0.19")
     implementation("com.google.android.gms:play-services-auth:20.4.0")
