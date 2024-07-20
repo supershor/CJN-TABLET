@@ -1,6 +1,7 @@
 package com.bpsi.cjnnetwork.Dashboard_all_in_one;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bpsi.cjnnetwork.MainActivity;
 import com.bpsi.cjnnetwork.R;
 import com.bpsi.cjnnetwork.UIHelper;
 import com.bpsi.cjnnetwork.model.Videomodel;
@@ -118,7 +120,6 @@ public class TVDashBoard extends AppCompatActivity implements OnClick_dashboard 
                             url = "";
                             url = string.replace("https://www.youtube.com/embed/", "").replace("\"","");
                             getLifecycle().addObserver((LifecycleObserver) yt_player);
-                            Toast.makeText(TVDashBoard.this,url, Toast.LENGTH_SHORT).show();
                             yt_player.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
                                 @Override
                                 public void onReady(@NonNull YouTubePlayer youTubePlayer) {
@@ -302,41 +303,7 @@ public class TVDashBoard extends AppCompatActivity implements OnClick_dashboard 
     }
 
 
-    public void getvideourl() {
 
-        AuthenticationApi authenticationApi = ApiClient.getClient().create(AuthenticationApi.class);
-        Call<Videomodel> call = authenticationApi.getVideoUrl();
-        Log.e("1onResponse 3", "" + call.request().url());
-        call.enqueue(new Callback<Videomodel>() {
-            @Override
-            public void onResponse(Call<Videomodel> call, Response<Videomodel> response) {
-                Log.e("1onResponse 4 Response:!!!!!!!!!!!!!!!!!!!",response.toString());
-                /*
-                if (response.body().getResponseStatus() == true) {
-                    if (response.body().getResponseMessage().getDisplay().get0().getLocation().equals("videobar")) {
-                        videourl = response.body().getResponseMessage().getDisplay().get0().get0().get(0).getVideoUrl();
-                        Log.d("Video URL for VieoBar:", "MSG" + videourl);
-
-                    }
-                    advtImages = new String[response.body().getResponseMessage().getDisplay().get1().get0().size()];
-                    for (int i = 0; i < advtImages.length; i++) {
-                        advtImages[i] = response.body().getResponseMessage().getDisplay().get1().get0().get(i).getAdvertisementAsset();
-                    }
-                }
-                else {
-                    UIHelper.toast(TVDashBoard.this, "Failed To Play Video");
-                }
-
-                 */
-            }
-
-            @Override
-            public void onFailure(Call<Videomodel> call, Throwable t) {
-                Log.d("1onResponse 5:", "MSG" + t.toString());
-                UIHelper.toast(TVDashBoard.this, t.toString());
-            }
-        });
-    }
 
 
     private void preparePlayer() {
@@ -379,23 +346,28 @@ public class TVDashBoard extends AppCompatActivity implements OnClick_dashboard 
 
     @Override
     public void onClick_dashboard_tapped(int position, int tapped_on) {
-        if (tapped_on==1){
-            try {
-                Intent intent=new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(qr_codes_links.get(position).assessment_test_link));
-                startActivity(intent);
-            }catch (Exception e){
+        SharedPreferences sharedPreferences=getSharedPreferences("Login_Info_for_usage",0);
+        if (sharedPreferences.getBoolean("Logged_In",false)){
+            if (tapped_on==1){
                 try {
                     Intent intent=new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("http://"+qr_codes_links.get(position).assessment_test_link));
+                    intent.setData(Uri.parse(qr_codes_links.get(position).assessment_test_link));
                     startActivity(intent);
-                }catch (Exception e1){
-                    Toast.makeText(this, e1.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e("onClick_dashboard_tapped:------------------",e1.toString());
-                    Log.e("onClick_dashboard_tapped:------------------",qr_codes_links.get(position).assessment_test_link.replace("http","-->>"));
+                }catch (Exception e){
+                    try {
+                        Intent intent=new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("http://"+qr_codes_links.get(position).assessment_test_link));
+                        startActivity(intent);
+                    }catch (Exception e1){
+                        Toast.makeText(this, e1.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e("onClick_dashboard_tapped:------------------",e1.toString());
+                        Log.e("onClick_dashboard_tapped:------------------",qr_codes_links.get(position).assessment_test_link.replace("http","-->>"));
+                    }
                 }
             }
+        }else{
+            Toast.makeText(this, "Please Login First", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(TVDashBoard.this,MainActivity.class));
         }
-        Toast.makeText(this, position+"-->>"+tapped_on, Toast.LENGTH_SHORT).show();
     }
 }

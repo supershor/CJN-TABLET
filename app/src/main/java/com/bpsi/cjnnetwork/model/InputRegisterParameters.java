@@ -17,6 +17,9 @@ public class InputRegisterParameters {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("usertype")
+    @Expose
+    private int usertype;
 
     public String getFullname() {
         return fullname;
@@ -32,6 +35,14 @@ public class InputRegisterParameters {
 
     public String getPassword() {
         return password;
+    }
+
+    public int getUsertype() {
+        return usertype;
+    }
+
+    public void setUsertype(int usertype) {
+        this.usertype = usertype;
     }
 
     public void setFullname(String fullname) {

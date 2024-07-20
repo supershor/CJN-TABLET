@@ -11,6 +11,17 @@ public class InputParamerLogin {
     @SerializedName("password")
     @Expose
     private String password;
+    @SerializedName("userType")
+    @Expose
+    private int userType;
+
+    public int getUserType() {
+        return userType;
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
 
     public String getEmail() {
         return email;

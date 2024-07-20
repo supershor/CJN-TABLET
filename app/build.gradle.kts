@@ -69,6 +69,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.9.0")
    /* implementation(files("libs/activation.jar"))
     implementation(files("libs/additionnal.jar"))
     implementation(files("libs/mail.jar"))*/

@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.bpsi.cjnnetwork.MainActivity;
+import com.bpsi.cjnnetwork.R;
 import com.bpsi.cjnnetwork.UIHelper;
 import com.bpsi.cjnnetwork.databinding.ActivityRegisterBinding;
 import com.bpsi.cjnnetwork.model.InputRegisterParameters;
@@ -16,6 +20,7 @@ import com.bpsi.cjnnetwork.network.ApiClient;
 import com.bpsi.cjnnetwork.network.AuthenticationApi;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -23,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    Spinner registerAsMenu;
     private ActivityRegisterBinding binding;
 
     @Override
@@ -31,6 +36,34 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //region registerAsMenu
+        registerAsMenu = findViewById(R.id.registerAsDropDown);
+        ArrayList<String> menuItems = new ArrayList<>();
+        menuItems.add("Candidate");
+        menuItems.add("Employee");
+        menuItems.add("Viewer");
+
+//        int selectedUserType
+        final String[] userValue = new String[1];
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, menuItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        registerAsMenu.setAdapter(adapter);
+
+        registerAsMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                userValue[0] =selectedItem;
+                Log.d("userType", String.valueOf(selectedUser(selectedItem)));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //endregion
 
         binding.tvLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 else{
                     binding.pbReg.setVisibility(View.VISIBLE);
-                    registerApi(name,email,mobile,password);
+                    registerApi(name,email,mobile,password,selectedUser(userValue[0]));
                 }
             }
         });
@@ -76,7 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    private void registerApi(final String name, final String email,final String mobile,final String password) {
+    private void registerApi(final String name, final String email,final String mobile,final String password,final int usertype) {
 
         AuthenticationApi authenticationApi = ApiClient.getClient().create(AuthenticationApi.class);
 
@@ -85,6 +118,8 @@ public class RegisterActivity extends AppCompatActivity {
         d.setEmail(email);
         d.setMobile(mobile);
         d.setPassword(password);
+        d.setUsertype(usertype);
+//        d.setUsertype();
         Log.e("TAG", "Register Input : " + new Gson().toJson(d));
         Call<ResponseParameterRegister> call = authenticationApi.register(d);
         Log.e("request_api_url", "" + call.request().url());
@@ -127,5 +162,14 @@ public class RegisterActivity extends AppCompatActivity {
         super.onBackPressed();
         startActivity(new Intent(this, MainActivity.class));
         finish();
+    }
+
+    private int selectedUser(String userType){
+        switch (userType){
+            case "Candidate" : return 0;
+            case "Employee"  : return 1;
+            case "Viewer"    : return 2;
+            default: return 0;
+        }
     }
 }

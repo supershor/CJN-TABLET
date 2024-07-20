@@ -3,10 +3,15 @@ package com.bpsi.cjnnetwork;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bpsi.cjnnetwork.Dashboard_all_in_one.TVDashBoard;
@@ -18,6 +23,7 @@ import com.bpsi.cjnnetwork.network.ApiClient;
 import com.bpsi.cjnnetwork.network.AuthenticationApi;
 import com.bpsi.cjnnetwork.network.WebserviceConstants;
 import com.bpsi.cjnnetwork.utils.GlobalInterface;
+import com.bpsi.cjnnetwork.utils.SingletonUserData;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -34,6 +40,7 @@ import com.google.gson.Gson;
 import com.bpsi.cjnnetwork.databinding.ActivityMainBinding;
 
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -43,8 +50,9 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     Button login, signup;
     String error_decscription;
+    Spinner loginAsMenu;
     private ActivityMainBinding binding;
-    String enviromentType;
+    public String enviromentType;
 
     private static final int RC_SIGN_IN = 9001;
     private FirebaseAuth mAuth;
@@ -58,6 +66,31 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         CjnSharedPreferences.init(this);
 
+        //region LoginAsMenu
+        loginAsMenu = findViewById(R.id.loginAsDropDown);
+        ArrayList<String> menuItems = new ArrayList<>();
+        menuItems.add("Candidate");
+        menuItems.add("Employee");
+        menuItems.add("Viewer");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, menuItems);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        loginAsMenu.setAdapter(adapter);
+        final int[] selectedUser = new int[1];
+        loginAsMenu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                Log.d("userType", String.valueOf(position));
+                selectedUser[0] =position;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //endregion
 //        _initUI();
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
@@ -86,9 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     binding.etPassword.setError("Please enter Password greater than 6 characters");
                 }
                 else{
-                                        login(email,password);
-                   /* Intent vv = new Intent(MainActivity.this, tvdashboard.class);
-                    startActivity(vv);*/
+                    login(email,password,selectedUser[0]);
 //                    startActivity(new Intent(MainActivity.this, DashboardActivity.class));
                 }
 
@@ -103,31 +134,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        binding.rdgAppType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                // TODO Auto-generated method stub
-//                if (checkedId == R.id.rbtn_dev) {
-//                    enviromentType = GlobalInterface.DEV;
-//                    CjnSharedPreferences.setAppType(GlobalInterface.DEV);
-//                    WebserviceConstants.setAppType(GlobalInterface.DEV);
-//                } else if (checkedId == R.id.rbtn_test) {
-//                    enviromentType = GlobalInterface.TEST;
-//                    CjnSharedPreferences.setAppType(GlobalInterface.TEST);
-//                    WebserviceConstants.setAppType(GlobalInterface.TEST);
-//                } else if (checkedId == R.id.rbtn_production) {
-//                    enviromentType = GlobalInterface.PRODUCTION;
-//                    CjnSharedPreferences.setAppType(GlobalInterface.PRODUCTION);
-//                    WebserviceConstants.setAppType(GlobalInterface.PRODUCTION);
-//                }
-//
-//            }
-//
-//        });
+        binding.rdgAppType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO Auto-generated method stub
+                if (checkedId == R.id.rbtn_dev) {
+                    enviromentType = GlobalInterface.DEV;
+                    CjnSharedPreferences.setAppType(GlobalInterface.DEV);
+                    WebserviceConstants.setAppType(GlobalInterface.DEV);
+
+                } else if (checkedId == R.id.rbtn_test) {
+                    enviromentType = GlobalInterface.TEST;
+                    CjnSharedPreferences.setAppType(GlobalInterface.TEST);
+                    WebserviceConstants.setAppType(GlobalInterface.TEST);
+                } else if (checkedId == R.id.rbtn_production) {
+                    enviromentType = GlobalInterface.PRODUCTION;
+                    CjnSharedPreferences.setAppType(GlobalInterface.PRODUCTION);
+                    WebserviceConstants.setAppType(GlobalInterface.PRODUCTION);
+                }
+
+            }
+
+        });
 
     }
-
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
@@ -142,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
-                Log.w("TAG", "Google sign in failed", e);
+                Log.w("SWG", "Google sign in failed", e);
             }
         }
     }
@@ -158,26 +188,30 @@ public class MainActivity extends AppCompatActivity {
                             String userEmail = user.getEmail();
                             String userName = user.getDisplayName();
                             Toast.makeText(this, "Used Signed In Succesfully", Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                            SharedPreferences sharedPreferences=getSharedPreferences("Login_Info_for_usage",0);
+                            SharedPreferences.Editor editor=sharedPreferences.edit();
+                            editor.putBoolean("Logged_In",true);
+                            editor.apply();
                             startActivity(new Intent(MainActivity.this, TVDashBoard.class));
 
-                            Log.d("TAG", "User email: " + userEmail);
-                            Log.d("TAG", "User name: " + userName);
+                            Log.d("SWG", "User email: " + userEmail);
+                            Log.d("SWG", "User name: " + userName);
                         }
                     } else {
-                        Log.w("TAG", "signInWithCredential:failure", task.getException());
+                        Log.w("SWG", "signInWithCredential:failure", task.getException());
                         Toast.makeText(this, "Failed To Sign In", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-    private void login(final String email, final String password) {
+    private void login(final String email, final String password,final int usertype) {
         binding.pbLogin.setVisibility(View.VISIBLE);
         AuthenticationApi authenticationApi = ApiClient.getClient().create(AuthenticationApi.class);
 
         InputParamerLogin d = new InputParamerLogin();
         d.setEmail(email);
         d.setPassword(password);
+        d.setUserType(usertype);
         Log.e("TAG", "Login Input : " + new Gson().toJson(d));
         Call<ResponseParameterLogin> call = authenticationApi.login(d);
         Log.e("request_api_url", "" + call.request().url());
@@ -192,8 +226,11 @@ public class MainActivity extends AppCompatActivity {
 
                     if (Objects.equals(response.body().getResponseStatus(), "true")) {
                         UIHelper.toast(MainActivity.this,"Logged In Successfully");
-                        //SingletonUserData.getInstance().setLoginDataOutput(response.body().getResponseMessage().getData());
-//                        startActivity(new Intent(MainActivity.this, DashboardActivity.class));
+                        SingletonUserData.getInstance().setLoginDataOutput(response.body().getResponseMessage().getData());
+                        SharedPreferences sharedPreferences=getSharedPreferences("Login_Info_for_usage",0);
+                        SharedPreferences.Editor editor=sharedPreferences.edit();
+                        editor.putBoolean("Logged_In",true);
+                        editor.apply();
                         startActivity(new Intent(MainActivity.this, TVDashBoard.class));
                     } else {
                         String errorMessage = response.body().getResponseMessage().toString();
@@ -226,7 +263,5 @@ public class MainActivity extends AppCompatActivity {
             WebserviceConstants.setAppType(GlobalInterface.DEV);
         }
     }
-
-
 
 }

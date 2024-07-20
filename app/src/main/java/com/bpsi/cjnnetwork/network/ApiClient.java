@@ -10,12 +10,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 
 public class ApiClient {
     private static Retrofit retrofit = null;
-    private static final String API_KEY = "987654321";
-
+    private static final String API_KEY = "SYXMcLRzqq1VRby6xISkrn3ieu8kmkHVWW37sRWK2b831424";
+    public static final int ID = 10;
 
     /*Gson gson = new GsonBuilder()
             .setLenient()
@@ -34,6 +35,7 @@ public class ApiClient {
                 Request newRequest = originalRequest.newBuilder()
                         .header("apikey", API_KEY)
                         .build();
+                Log.d("API_TAG", "key"+API_KEY);
                 return chain.proceed(newRequest);
             };
 
@@ -43,13 +45,47 @@ public class ApiClient {
                     .build();
             retrofit = new Retrofit.Builder()
                     .baseUrl(WebserviceConstants.HTTP_BASE_URL+WebserviceConstants.SMART_COOKIE_STUDNET_BASE_URL)
-                   // .baseUrl("https://dev.smartcookie.in/")
+                    // .baseUrl("https://dev.smartcookie.in/")
                     //.baseUrl("https://test.smartcookie.in/")
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .client(okHttpClient)
                     .build();
         }
         Log.i("BAseUrl", WebserviceConstants.HTTP_BASE_URL+WebserviceConstants.SMART_COOKIE_STUDNET_BASE_URL);
+        return retrofit;
+    }
+
+    public static Retrofit getDocs(){
+        if (retrofit==null) {
+
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
+
+            Interceptor apiKeyInterceptor = chain -> {
+                Request originalRequest = chain.request();
+                Request newRequest = originalRequest.newBuilder()
+                        .header("apikey", API_KEY)
+                        .build();
+                Log.d("API_TAG", "key"+API_KEY);
+                return chain.proceed(newRequest);
+            };
+
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+            // Build OkHttpClient with the Interceptor
+            OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                    .addInterceptor(apiKeyInterceptor)
+                    .addInterceptor(loggingInterceptor)
+                    .build();
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(WebserviceConstants.GET_JOBDESCRIPTION)
+                    .addConverterFactory(GsonConverterFactory.create(gson))
+                    .client(okHttpClient)
+                    .build();
+        }
+        Log.i("BAseUrl",WebserviceConstants.GET_JOBDESCRIPTION);
         return retrofit;
     }
 }
