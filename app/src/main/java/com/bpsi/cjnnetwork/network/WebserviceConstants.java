@@ -9,8 +9,7 @@ import com.bpsi.cjnnetwork.utils.GlobalInterface;
  * @author pramod
  */
 public class WebserviceConstants {
-
-
+    public static String currentMode = "dev";
     public static final String HTTP_BASE_URL = "https://";
     public static final String CJN_BASE_URL = "https://dev.cjnnow.com/api";
     //public static final String SMART_COOKIE_STUDNET_DEFAULT_IMG =
@@ -24,13 +23,12 @@ public class WebserviceConstants {
     public static final String LOGIN_API = CJN_BASE_URL+"/login";
     public static final String REGISTER_API = CJN_BASE_URL+"/signup";
     public static final String READ_JOB_API = CJN_BASE_URL+"/readjob";
-    public static final String GET_VIDEO_URL = CJN_BASE_URL+"gettvshowinfo/s501";
-    public static final String GET_LANDING_PAGE = CJN_BASE_URL+"/gettvshowinfo";
-    public static final String GET_JOBDESCRIPTION = "http://localhost.devcjnnow.com//api2/api2.php?x=jobdesc";
+    public static final String GET_JOBDESCRIPTION = READ_JOB_API+"/";
+    //    public static final String GET_JOBDESCRIPTION = "http://localhost.devcjnnow.com//api2/api2.php?x=jobdesc";
     public static String SMART_COOKIE_STUDNET_BASE_URL = "smartcookie.in/";
     public static void setAppType(String Apptype) {
         if (Apptype.equals(GlobalInterface.TEST)) {
-
+            currentMode = "test";
             SMART_COOKIE_STUDNET_BASE_URL =
                     // "devsmart.bpsi.us/core/Version2/";
                     //"tsmartcookies.bpsi.us/core/Version2/";
@@ -47,7 +45,7 @@ public class WebserviceConstants {
                     // "tsmartcookies.bpsi.us/core/";
                     "test.smartcookie.in/core/";
         } else if (Apptype.equals(GlobalInterface.DEV)) {
-
+            currentMode = "dev";
             SMART_COOKIE_STUDNET_BASE_URL =
                     // "devsmart.bpsi.us/core/Version2/";
                     //"tsmartcookies.bpsi.us/core/Version2/";
@@ -65,7 +63,7 @@ public class WebserviceConstants {
         }
 
         else {
-
+            currentMode = "app";
             SMART_COOKIE_STUDNET_BASE_URL =
                     "smartcookie.in/";
 
@@ -76,13 +74,17 @@ public class WebserviceConstants {
                     "smartcookie.in/core/";
         }
     }
+//    public void SetMode(String selection){
+//        switch (selection){
+//            case "TEST":currentMode = "test";break;
+//            case "PRODUCTION":currentMode="app";break;
+//            default:currentMode="dev";
+//        }
+//    }
 
-
-
-
-
+    public static String DOC_LINK = "";
+//    public static String getJobDescApi(String id){
+//        String DocUrl = GET_JOBDESCRIPTION + "/" + id;
+//        return DocUrl;
+//    }
 }
-
-
-
-
