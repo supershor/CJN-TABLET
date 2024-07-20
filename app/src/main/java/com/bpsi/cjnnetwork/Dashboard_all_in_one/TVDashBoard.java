@@ -77,7 +77,7 @@ public class TVDashBoard extends AppCompatActivity implements OnClick_dashboard 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tvdashboard);
-        Log.e("1onCreate:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", "!@#$%^&*()O!@#$%^&*()_");
+        Log.e("1onCreate:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>", "!@#$%^&()O!@#$%^&()_");
         /*
         playerView = findViewById(R.id.exoplaytv);
         player = new SimpleExoPlayer.Builder(TVDashBoard.this).build();
@@ -146,8 +146,8 @@ public class TVDashBoard extends AppCompatActivity implements OnClick_dashboard 
                             JsonArray advertisements=jsonObject.get("responseMessage").getAsJsonObject().get("Display").getAsJsonObject().get("1").getAsJsonObject().get("0").getAsJsonArray();
                             for (int i = 0; i < advertisements.size(); i++) {
                                 //if (i!=0){
-                                    JsonObject jsonObject1=advertisements.get(i).getAsJsonObject();Log.e("1onResponse: 12345>>>>>>>>", "--" + jsonObject1.get("advertisement_asset").toString().replace("\"","") + "--");
-                                    advertisements_links.add(jsonObject1.get("advertisement_asset").toString().replace("\"",""));
+                                JsonObject jsonObject1=advertisements.get(i).getAsJsonObject();Log.e("1onResponse: 12345>>>>>>>>", "--" + jsonObject1.get("advertisement_asset").toString().replace("\"","") + "--");
+                                advertisements_links.add(jsonObject1.get("advertisement_asset").toString().replace("\"",""));
                                 //}
 
                             }
@@ -167,9 +167,28 @@ public class TVDashBoard extends AppCompatActivity implements OnClick_dashboard 
                         }
 
                         try {
+                            JsonArray qr_code4 = jsonObject.get("responseMessage").getAsJsonObject().get("Display").getAsJsonObject().get("4").getAsJsonArray();
+
+                            for (int i = 0; i < qr_code4.size(); i++) {
+                                qr_codes_links.add(new qrcodes("training/"+qr_code4.get(i).getAsJsonObject().get("training_qrcode_id").toString().replace("\"",""),qr_code4.get(i).getAsJsonObject().get("training_institute_id").toString().replace("\"",""),qr_code4.get(i).getAsJsonObject().get("web_link").toString().replace("\"","")));
+                            }
+
+
                             JsonArray qr_code5 = jsonObject.get("responseMessage").getAsJsonObject().get("Display").getAsJsonObject().get("5").getAsJsonArray();
                             for (int i = 0; i < qr_code5.size(); i++) {
                                 qr_codes_links.add(new qrcodes("assessment/"+qr_code5.get(i).getAsJsonObject().get("assessment_qrcode_filename").toString().replace("\"",""),qr_code5.get(i).getAsJsonObject().get("assessment_system").toString().replace("\"",""),qr_code5.get(i).getAsJsonObject().get("assessment_test_link").toString().replace("\"","")));
+                            }
+
+
+                            JsonArray qr_code6 = jsonObject.get("responseMessage").getAsJsonObject().get("Display").getAsJsonObject().get("6").getAsJsonArray();
+                            for (int i = 0; i < qr_code6.size(); i++) {
+                                qr_codes_links.add(new qrcodes("interviewroom/"+qr_code6.get(i).getAsJsonObject().get("interview_qr_code").toString().replace("\"",""),qr_code6.get(i).getAsJsonObject().get("conference_system_type").toString().replace("\"",""),qr_code6.get(i).getAsJsonObject().get("interview_room_link").toString().replace("\"","")));
+                            }
+
+
+                            JsonArray qr_code7 = jsonObject.get("responseMessage").getAsJsonObject().get("Display").getAsJsonObject().get("7").getAsJsonArray();
+                            for (int i = 0; i < qr_code7.size(); i++) {
+                                qr_codes_links.add(new qrcodes("jobdesc/"+qr_code7.get(i).getAsJsonObject().get("qrcode_filename").toString().replace("\"",""),qr_code7.get(i).getAsJsonObject().get("Job_title").toString().replace("\"",""),qr_code7.get(i).getAsJsonObject().get("Job_desc_pdf_link").toString().replace("\"","").replace("localhost.devcjnnow.com","dev.cjnnow.com")));
                             }
                             Recyclerview_qr_code recyclerviewQrCode=new Recyclerview_qr_code(qr_codes_links,TVDashBoard.this,TVDashBoard.this::onClick_dashboard_tapped);
                             recycler_view_qrcodes.setLayoutManager(new LinearLayoutManager(TVDashBoard.this,LinearLayoutManager.HORIZONTAL,false));
@@ -261,26 +280,26 @@ public class TVDashBoard extends AppCompatActivity implements OnClick_dashboard 
             },3000);
         }
     }
-        @Override
-        protected void onDestroy() {
-            super.onDestroy();
-            // Release the player when it's no longer needed.
-            try {
-                if (player != null) {
-                    player.release();
-                    player = null;
-                }
-            }catch (Exception e){
-                Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(TVDashBoard.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                },3000);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Release the player when it's no longer needed.
+        try {
+            if (player != null) {
+                player.release();
+                player = null;
             }
-
+        }catch (Exception e){
+            Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(TVDashBoard.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            },3000);
         }
+
+    }
 
 
     public void getvideourl() {

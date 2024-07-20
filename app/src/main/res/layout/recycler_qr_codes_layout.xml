@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:orientation="vertical"
-    android:layout_marginStart="@dimen/_3sdp"
+    android:layout_marginStart="@dimen/_5sdp"
     android:layout_height="wrap_content">
     <ImageView
         android:scaleType="fitXY"
+        android:padding="@dimen/_5sdp"
         android:src="@drawable/qr_example"
         android:id="@+id/qr1"
         android:layout_width="@dimen/_70sdp"

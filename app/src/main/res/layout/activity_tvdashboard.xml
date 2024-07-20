@@ -16,13 +16,7 @@
                 android:layout_width="wrap_content"
                 android:orientation="vertical"
                 android:layout_height="match_parent">
-                <ImageView
-                    android:layout_width="@dimen/_102sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/cjn_logo"
-                    android:contentDescription="logo"
-                    android:id="@+id/tvcjnlogo"
-                    />
+
 
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="@dimen/_102sdp"
@@ -44,141 +38,164 @@
     </LinearLayout>
     <androidx.core.widget.NestedScrollView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
+
         <LinearLayout
-            android:id="@+id/statsLinearLayout"
-            android:layout_width="@dimen/_278sdp"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <LinearLayout
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:ignore="UselessParent">
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
                 <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/statsLinearLayout"
+                    android:layout_width="@dimen/_278sdp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/openingtv"
-                        android:textAlignment="center"
-                        android:text="Openings"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/_12sdp"
-                        android:gravity="center"/>
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
 
-                    <TextView
-                        android:id="@+id/openingnumbers"
+                        android:layout_gravity="center"
                         android:layout_width="match_parent"
-                        android:textAlignment="center"
                         android:layout_height="wrap_content"
-                        android:hint="op"
-                        android:textSize="@dimen/_10sdp"
-                        android:gravity="center" />
+                        tools:ignore="UselessParent">
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/openingtv"
+                                android:textAlignment="center"
+                                android:text="Openings"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/openingnumbers"
+                                android:layout_width="match_parent"
+                                android:textAlignment="center"
+                                android:layout_height="wrap_content"
+                                android:hint="op"
+                                android:textSize="@dimen/_10sdp"
+                                android:gravity="center" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:textAlignment="center"
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/interviewstv"
+                                android:text="Interviews"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/_12sdp"
+                                android:gravity="center"/>
+
+                            <TextView
+                                android:id="@+id/intervirenumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="2000"
+                                android:textSize="@dimen/_10sdp"
+                                android:textAlignment="center"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_weight="1"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:textAlignment="center"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/offeredtv"
+                                android:text="Offered"
+                                android:textStyle="bold"
+                                android:textSize="@dimen/_12sdp"/>
+
+                            <TextView
+                                android:id="@+id/offerednumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="1200"
+                                android:textAlignment="center"
+                                android:textSize="@dimen/_10sdp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_160sdp"
+                            android:id="@+id/videoframe">
+                            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/yt_player"
+                                app:autoPlay="false"
+                                android:scaleType="fitXY"
+                                android:keepScreenOn="true"/>
+                        </FrameLayout>
+                    </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:textAlignment="center"
-
+                    android:layout_gravity="top"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:padding="@dimen/_5sdp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/interviewstv"
-                        android:text="Interviews"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/_12sdp"
-                        android:gravity="center"/>
-
-                    <TextView
-                        android:id="@+id/intervirenumber"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/cjn_logo"
+                        android:contentDescription="logo"
+                        android:id="@+id/tvcjnlogo"
+                        />
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="2000"
-                        android:textSize="@dimen/_10sdp"
-                        android:textAlignment="center"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_weight="1"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:textAlignment="center"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/offeredtv"
-                        android:text="Offered"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/_12sdp"/>
-
-                    <TextView
-                        android:id="@+id/offerednumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="1200"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/_10sdp"/>
+                        android:layout_gravity="top"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="@dimen/_160sdp"
+                            android:layout_height="@dimen/_160sdp"
+                            android:id="@+id/advertisement"
+                            android:src="@drawable/advertisement_example"/>
+                    </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_160sdp"
-                    android:id="@+id/videoframe">
-                    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/yt_player"
-                        app:autoPlay="false"
-                        android:scaleType="fitXY"
-                        android:keepScreenOn="true"/>
-                </FrameLayout>
                 <LinearLayout
+                    android:id="@+id/qrCodesLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/qrCodesLayout"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/recycler_view_qrcodes"/>
-                    </LinearLayout>
+                        android:id="@+id/recycler_view_qrcodes"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-    <LinearLayout
-        android:layout_gravity="top"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_gravity="top"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_width="@dimen/_160sdp"
-                android:layout_marginTop="@dimen/_40sdp"
-                android:layout_height="@dimen/_160sdp"
-                android:id="@+id/advertisement"
-                android:src="@drawable/advertisement_example"/>
-        </RelativeLayout>
-    </LinearLayout>
+
+
 </LinearLayout>
